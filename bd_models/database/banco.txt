@@ -1,0 +1,63 @@
+http://localhost/phpmyadmin/
+
+nome do banco: bdPeaky
+
+create table tbCategoria(
+ idCategoria int primary key auto_increment
+,categoria varchar(50)
+);
+
+create table tbProduto(
+ idProduto int primary key auto_increment
+,produto varchar(50)
+,idCategoria int
+,valor float
+,caminhoImagem varchar(50)
+,foreign key(idCategoria) references tbCategoria(idCategoria) on delete cascade
+);
+
+create table tbUsuario(
+ idUsuario int primary key auto_increment
+,nomeUsuario varchar(50)
+,loginUsuario varchar(50)
+,senhaUsuario varchar(50) 
+);
+
+
+insert into tbCategoria values(
+ null
+,'Camisas'
+);
+
+insert into tbCategoria values(
+ null
+,'Moletons'
+);
+
+insert into tbCategoria values(
+ null
+ ,'Celulares'
+);
+
+insert into tbProduto values(
+null
+,'Camisa Nike'
+,1
+,3.5
+,'../../assets/img/camisa-adidas.png'
+);
+
+insert into tbProduto values(
+null
+,'Moletom Adidas Tripoloski'
+,2
+,2500
+,'../../assets/img/blusa-moletom-adidas.png'
+);
+
+
+select tbproduto.produto, tbcategoria.categoria, tbproduto.valor from tbproduto
+inner join tbcategoria on tbproduto.idCategoria = tbproduto.idCategoria
+
+select p.produto, c.categoria, p.valor from tbproduto p
+inner join tbcategoria c on p.idCategoria = c.idCategoria 
